@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Catagories from "./Catagories";
 import Offer from "./Offer";
-import LoginForm from "./LoginForm";
+
+
+import { Link } from "react-router-dom";
 
 const ProductList = ({ addToCart }) => {
   const [data, setData] = useState(Catagories);
@@ -76,25 +78,27 @@ const ProductList = ({ addToCart }) => {
         </span>
       </h1>
       <div className="flex flex-wrap mx-4  justify-around rounded overflow-hidden shadow-lg m-6   sm:mt-20">
-        {data.map((product, index) => (
+        {data.map((products, index) => (
           <div
-            key={index}
+            key={products.productId}
             className="mb-8 mt-2  transition ease-in-out delay-100 sm:w-1/2 md:w-1/3 lg:w-1/5 px-4 shadow-lg m-2   rounded-3xl dark:border dark:border-blue-800 hover:bg-sky-500 hover:text-white translate-y-1 hover:scale-110"
           >
-            <div className="mx-8 text-center ">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-40 h-40 mx-2 mb-2 mt-2 rounded-2xl"
-              />
-              <h3 className="text-lg font-semibold mb-2 ">{product.name}</h3>
+            <div className="mx-8 text-center">
+              <Link to={`/product/${String(products.productId)}`}>
+                <img
+                  src={products.image}
+                  alt={products.name}
+                  className="w-40 h-40 mx-2 mb-2 mt-2 rounded-2xl"
+                />
+              </Link>
+              <h3 className="text-lg font-semibold mb-2 ">{products.name}</h3>
 
-              <p className=" mb-2 font-bold"> Rs.{product.price}</p>
-              <p className=" mb-2 font-bold">Category: {product.category}</p>
+              <p className=" mb-2 font-bold"> Rs.{products.price}</p>
+              <p className=" mb-2 font-bold">Category: {products.category}</p>
 
               <button
                 className="bg-blue-500 rounded-full px-8 py-1 text-sm font-semibold text-white mr-2 focus:outline-none mb-2 mx-4 hover:bg-violet-600"
-                onClick={() => addToCart(product)}
+                onClick={() => addToCart(products)}
               >
                 Add to cart
               </button>
@@ -102,8 +106,8 @@ const ProductList = ({ addToCart }) => {
           </div>
         ))}
       </div>
+
       <Offer />
-      <LoginForm />
     </>
   );
 };

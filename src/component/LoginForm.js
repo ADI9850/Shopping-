@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function LoginForm() {
+function LoginForm({ onClose }) {
   // State variables for email and password inputs
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     // You can perform form submission logic here, such as sending data to an API
     console.log("Submitted:", { email, password });
+
+    // Display alert for successful login
+    alert("Login successful");
+
+    // Close the login form popup
+    onClose();
   };
 
   return (
-    <section className="bg-slate-200 " id='login'>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-400 lg:py-1">
-       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-blue-500">
-          <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
+    <div className="bg-slate-200 p-4 rounded-lg">
+      <div className="flex flex-col items-center justify-center md:h-400">
+        <a
+          href="#"
+          className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-blue-500"
+        >
+          <img
+            className="w-8 h-8 mr-2"
+            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+            alt="logo"
+          />
           Login
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-800">
@@ -26,7 +39,12 @@ function LoginForm() {
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Your email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -39,7 +57,12 @@ function LoginForm() {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Password
+                </label>
                 <input
                   type="password"
                   name="password"
@@ -63,10 +86,20 @@ function LoginForm() {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-black dark:text-gray-300">Remember me</label>
+                    <label
+                      htmlFor="remember"
+                      className="text-black dark:text-gray-300"
+                    >
+                      Remember me
+                    </label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                <a
+                  href="#"
+                  className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >
+                  Forgot password?
+                </a>
               </div>
               <button
                 type="submit"
@@ -75,13 +108,25 @@ function LoginForm() {
                 Sign in
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-black">
-                Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                Don’t have an account yet?{" "}
+                <a
+                  href="#"
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                >
+                  Sign up
+                </a>
               </p>
             </form>
           </div>
         </div>
+        <button
+          onClick={onClose}
+          className="mt-4 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none"
+        >
+          Close
+        </button>
       </div>
-    </section>
+    </div>
   );
 }
 
